@@ -11,8 +11,7 @@ Future<void> main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              context.read<MainMenuBloc>()..add(MainMenuGetData()),
+          create: (context) => MainMenuBloc()..add(MainMenuGetData()),
         ),
       ],
       child: MainApp(),
@@ -24,6 +23,6 @@ class MainApp extends StatelessWidget {
   const MainApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return UiMainMenu();
+    return MaterialApp(debugShowCheckedModeBanner: false, home: UiMainMenu());
   }
 }

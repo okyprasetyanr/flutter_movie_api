@@ -4,16 +4,16 @@ import 'package:flutte_movie_api/model_data/model_movie_list.dart';
 class ModelMovie extends Equatable {
   final int page;
   final List<ModelMovieList> movieList;
-  final int total_page;
-  final int total_result;
+  final int totalPage;
+  final int totalResult;
 
-  ModelMovie({
+  const ModelMovie({
     required this.page,
     required this.movieList,
-    required this.total_page,
-    required this.total_result,
+    required this.totalPage,
+    required this.totalResult,
   });
 
   @override
-  List<Object?> get props => [page, movieList, total_page, total_result];
+  List<Object?> get props => [page, movieList, totalPage, totalResult];
 }

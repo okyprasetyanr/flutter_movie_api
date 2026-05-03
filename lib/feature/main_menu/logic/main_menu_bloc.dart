@@ -18,7 +18,7 @@ class MainMenuBloc extends Bloc<MainMenuEvent, MainMenuState> {
     final currentState = state is MainMenuLoaded
         ? state as MainMenuLoaded
         : MainMenuLoaded();
-    final dataMovie = await fetch_movie();
+    final dataMovie = await fetchMovie();
     List<ModelMovieList> dataMovieList = dataMovie != null
         ? dataMovie.movieList
         : [];

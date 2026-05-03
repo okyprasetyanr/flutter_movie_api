@@ -1,5 +1,7 @@
+import 'package:flutte_movie_api/function/function.dart';
 import 'package:flutte_movie_api/model_data/model_movie.dart';
 import 'package:flutte_movie_api/model_data/model_movie_list.dart';
+import 'package:flutte_movie_api/model_data/model_movie_trailer.dart';
 
 ModelMovie fromJsonMovie(Map<String, dynamic> data) {
   return ModelMovie(
@@ -7,20 +9,39 @@ ModelMovie fromJsonMovie(Map<String, dynamic> data) {
     movieList: (data['results'] as List<dynamic>)
         .map((e) => fromJsonMovieList(e))
         .toList(),
-    total_page: data['total_pages'],
-    total_result: data['total_results'],
+    totalPage: data['total_pages'],
+    totalResult: data['total_results'],
   );
 }
 
 ModelMovieList fromJsonMovieList(Map<String, dynamic> data) {
   return ModelMovieList(
-    description: data['description'],
-    favorite_count: data['favorite_count'],
+    adult: data['adult'],
+    backdropPath: data['backdrop_path'],
+    genreIds: (data['genre_ids'] as List).map((e) => e as int).toList(),
     id: data['id'],
-    item_count: data['item_count'],
-    iso: data['iso'],
-    list_type: data['list_type'],
-    name: data['name'],
-    poster_path: data['poster_path'],
+    title: data['title'],
+    originalTitle: data['original_title'],
+    overview: data['overview'],
+    popularity: data['popularity'],
+    posterPath: data['poster_path'],
+    releaseDate: data['release_date'] != null
+        ? parseDate(date: data['release_date'], minute: false)
+        : null,
+    voteAverage: data['vote_average'],
+    voteCount: data['vote_count'],
+  );
+}
+
+ModelMovieTrailer fromJsonMovieTrailer(Map<String, dynamic> data) {
+  final finalData = (data['results'] as List<dynamic>).firstWhere((element) {
+    final elementData = element as Map<String, dynamic>;
+    return elementData['site'] == "YouTube" && elementData['type'] == 'Trailer';
+  });
+  return ModelMovieTrailer(
+    name: finalData['name'],
+    key: finalData['key'],
+    site: finalData['site'],
+    type: finalData['type'],
   );
 }

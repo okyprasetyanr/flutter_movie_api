@@ -1,35 +1,47 @@
 import 'package:equatable/equatable.dart';
 
 class ModelMovieList extends Equatable {
-  final String description;
-  final int favorite_count;
+  final bool adult;
+  final String backdropPath;
+  final List<int> genreIds;
   final int id;
-  final int item_count;
-  final String iso;
-  final String list_type;
-  final String name;
-  final String poster_path;
+  final String title;
+  final String originalTitle;
+  final String overview;
+  final double popularity;
+  final String posterPath;
+  final DateTime? releaseDate;
+  final double voteAverage;
+  final int voteCount;
 
   ModelMovieList({
-    required this.description,
-    required this.favorite_count,
+    required this.adult,
+    required this.backdropPath,
+    required this.genreIds,
     required this.id,
-    required this.item_count,
-    required this.iso,
-    required this.list_type,
-    required this.name,
-    required this.poster_path,
+    required this.title,
+    required this.originalTitle,
+    required this.overview,
+    required this.popularity,
+    required this.posterPath,
+    required this.releaseDate,
+    required this.voteAverage,
+    required this.voteCount,
   });
 
   @override
   List<Object?> get props => [
-    description,
-    favorite_count,
+    adult,
+    backdropPath,
+    genreIds,
     id,
-    item_count,
-    iso,
-    list_type,
-    name,
-    poster_path,
+    title,
+    originalTitle,
+    overview,
+    popularity,
+    posterPath,
+    releaseDate,
+    voteAverage,
+    voteCount,
   ];
 }
